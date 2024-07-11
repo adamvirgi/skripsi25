@@ -1,5 +1,6 @@
 import joblib
 import streamlit as st
+import numpy as np
 
 # Load the saved model and scaler
 model = joblib.load('stunting_svm.pkl')
@@ -12,9 +13,10 @@ st.title('Stunting Prediksi App')
 gender = st.radio('gender', ['Male', 'Female'])
 height = st.number_input('Tinggi Badan (cm)', min_value=0.0)
 weight = st.number_input('Berat Badan (kg)', min_value=0.0)
-gender = 1 if gender == 'Male' else 0 
+gender_code = 1 if gender == 'Male' else 0  # Convert gender to numeric code
+
 # Preprocess the user input
-input_data = [[gender, height, weight]]
+input_data = np.array([[gender_code, height, weight, 0]])  # Assuming '0' for any additional feature
 input_scaled = scaler.transform(input_data)
 
 # Make a prediction
@@ -28,4 +30,3 @@ if st.button('Predict'):
        5: 'Extremely Stunting'
     }
     st.write(f'Predicted Stunting Category: {index_labels[prediction]}')
-
