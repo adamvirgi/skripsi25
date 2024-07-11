@@ -12,7 +12,7 @@ st.title('Stunting Prediksi App')
 gender = st.radio('jk', ['Male', 'Female'])
 height = st.number_input('Tinggi Badan (cm)', min_value=0.0)
 weight = st.number_input('Berat Badan (kg)', min_value=0.0)
-jk = 1 if gender == 'Male' else 0 
+gender = 1 if gender == 'Male' else 0 
 # Preprocess the user input
 input_data = [[jk, height, weight]]
 input_scaled = scaler.transform(input_data)
