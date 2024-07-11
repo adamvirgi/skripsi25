@@ -9,12 +9,12 @@ scaler = joblib.load('scaler.pkl')
 st.title('Stunting Prediksi App')
 
 # Get user input
-gender = st.radio('jk', ['Male', 'Female'])
+gender = st.radio('gender', ['Male', 'Female'])
 height = st.number_input('Tinggi Badan (cm)', min_value=0.0)
 weight = st.number_input('Berat Badan (kg)', min_value=0.0)
 gender = 1 if gender == 'Male' else 0 
 # Preprocess the user input
-input_data = [[jk, height, weight]]
+input_data = [[gender, height, weight]]
 input_scaled = scaler.transform(input_data)
 
 # Make a prediction
